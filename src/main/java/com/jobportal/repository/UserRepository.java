@@ -1,5 +1,9 @@
 package com.jobportal.repository;
 
-public class UserRepository {
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import com.jobportal.entity.User;
+
+public interface UserRepository extends MongoRepository<User, String> {
 
 }

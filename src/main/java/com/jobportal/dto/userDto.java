@@ -1,28 +1,35 @@
 package com.jobportal.dto;
 
 import com.jobportal.entity.User;
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
 public class UserDto {
-    private String id;
+
+    private Long id;
+
     @NotBlank(message = "{user.name.absent}")
     private String name;
+
     @NotBlank(message = "{user.email.absent}")
     @Email(message = "{user.email.invalid}")
     private String email;
+
     @NotBlank(message = "{user.password.absent}")
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,15}$" , message = "{user.password.invalid}")
+    @Pattern(
+        regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,15}$",
+        message = "{user.password.invalid}"
+    )
     private String password;
+
     private AccountType accountType;
 
-    // No-args constructor
+    // ✅ No-args constructor
     public UserDto() {}
 
-    // All-args constructor
-    public UserDto(String id, String name, String email, String password, AccountType accountType) {
+    // ✅ All-args constructor
+    public UserDto(Long id, String name, String email, String password, AccountType accountType) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -30,9 +37,9 @@ public class UserDto {
         this.accountType = accountType;
     }
 
-    // Getters/Setters
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    // ✅ Getters and Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
@@ -46,7 +53,7 @@ public class UserDto {
     public AccountType getAccountType() { return accountType; }
     public void setAccountType(AccountType accountType) { this.accountType = accountType; }
 
-    // Convert DTO → Entity
+    // ✅ Convert DTO → Entity
     public User toEntity() {
         return new User(this.id, this.name, this.email, this.password, this.accountType);
     }

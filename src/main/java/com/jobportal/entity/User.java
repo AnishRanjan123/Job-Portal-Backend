@@ -10,7 +10,7 @@ import com.jobportal.dto.UserDto;
 public class User {
 
     @Id
-    private String id;
+    private Long id;
     private String name;
     @Indexed(unique = true)
     private String email;
@@ -21,7 +21,7 @@ public class User {
     public User() {}
 
     // All-args constructor
-    public User(String id, String name, String email, String password, AccountType accountType) {
+    public User(Long id, String name, String email, String password, AccountType accountType) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -30,8 +30,8 @@ public class User {
     }
 
     // Getters/Setters
-    public String getId() { return id; }
-    public void setId(String id) { this.id = id; }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jobportal.dto.UserDto;
+import com.jobportal.exception.JobPortalException;
 import com.jobportal.service.UserService;
 
 import jakarta.validation.Valid;
@@ -25,7 +26,7 @@ public class UserAPI {
 	private UserService userService;
 	
 	@PostMapping("/register")
-	public ResponseEntity<UserDto> registerUser(@RequestBody @Valid UserDto userDTO) {
+	public ResponseEntity<UserDto> registerUser(@RequestBody @Valid UserDto userDTO) throws JobPortalException {
 		userDTO = userService.registerUser(userDTO);
 		return new ResponseEntity<>(userDTO, HttpStatus.CREATED);
 	}
